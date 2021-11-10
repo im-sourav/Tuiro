@@ -1,13 +1,4 @@
 const topLayer = document.getElementById("top_layer");
-const cvs = document.querySelector("canvas");
-const jyt = document.getElementById("joystick");
-const scorE = document.getElementById("mscore");
-const smlScore = document.getElementById("score");
-const bigScore = document.getElementById("bigScore");
-const showScore = document.getElementById("showScore");
-const startGame = document.getElementById("startGame");
-const bestScore = document.getElementById("bestScore");
-const ctx = cvs.getContext("2d");
 
 function getFullScreen() {
   return (
@@ -23,7 +14,7 @@ function getFullScreen() {
 topLayer.addEventListener("click", () => {
   fullScreenPag();
   topLayer.style.display = "none";
-  enter();
+  setTimeout(enter, 100);
 });
 
 function fullScreenPag() {
@@ -32,6 +23,15 @@ function fullScreenPag() {
 }
 
 function enter() {
+  const cvs = document.querySelector("canvas");
+  const jyt = document.getElementById("joystick");
+  const scorE = document.getElementById("mscore");
+  const smlScore = document.getElementById("score");
+  const bigScore = document.getElementById("bigScore");
+  const showScore = document.getElementById("showScore");
+  const startGame = document.getElementById("startGame");
+  const bestScore = document.getElementById("bestScore");
+  const ctx = cvs.getContext("2d");
   cvs.width = window.innerWidth;
   cvs.height = window.innerHeight;
 
