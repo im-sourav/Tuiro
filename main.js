@@ -15,7 +15,7 @@ topLayer.addEventListener("click", () => {
   fullScreenPag();
   topLayer.style.display = "none";
   setTimeout(enter, 500);
-});
+}); 
 
 function fullScreenPag() {
   if (getFullScreen()) document.exitFullscreen();
@@ -315,7 +315,6 @@ function enter() {
 
   // degree convert to radian
   function toRadian(degree) {
-    input;
     return (degree * Math.PI) / 180;
   }
 
@@ -336,15 +335,16 @@ function enter() {
 
     fire = true;
     let xangle = Math.atan2(y, x);
-    angle = -(xangle + toDegree(90));
+    angle = -(xangle - toRadian(90));
   });
 
+//   console.log(toRadian(90));
   jyt.addEventListener("touchmove", (e) => {
     jx = e.touches[0].clientX - sjx;
     jy = e.touches[0].clientY - sjy;
 
     let xangle = Math.atan2(jy, jx);
-    angle = -(xangle + toDegree(90));
+    angle = -(xangle - toRadian(90));
   });
   jyt.addEventListener("touchend", (e) => {
     fire = false;
