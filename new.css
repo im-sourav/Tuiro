@@ -113,3 +113,16 @@ span {
     top: 0;
 
   }
+
+  #top_layer{
+      display: flex;
+      position: fixed;
+      z-index: 100;
+      width: 100vw;
+      height: 100vh;
+      background: #00000f;
+      color: #ffffff;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+  }

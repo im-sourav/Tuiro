@@ -1,3 +1,48 @@
+const topLayer = document.getElementById("top_layer");
+
+function getFullScreen() {
+    return (
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullscreenElement ||
+      document.msFullscreenElement
+    );
+  }
+//   document.addEventListener("fullscreenchange", () => {
+//     console.log("change");
+//   });
+topLayer.addEventListener("click", () => {
+    fullScreenPag()
+    console.log("ok on");
+    topLayer.style.display = "none";
+  });
+  
+  function fullScreenPag() {
+    if (getFullScreen()) document.exitFullscreen();
+    else document.documentElement.requestFullscreen().catch(console.log);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const cvs = document.querySelector("canvas");
 const jyt = document.getElementById("joystick");
 const scorE = document.getElementById("mscore");
