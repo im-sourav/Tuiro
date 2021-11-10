@@ -104,46 +104,12 @@ span {
     box-shadow: none;
     background: #2aff5f;
 }
-
-:root {
-    --js: 200px; /* for joystick size*/
-    --cn: 90px; /* for center size*/
-  }
  
   #joystick {
     position: fixed;
-    width: var(--js);
-    height: var(--js);
-    right: 0;
-    bottom: 0;
-    margin: 50px;
-    border: 2px double #00000077;
-    box-shadow: inset 0 0 2px #00000066, inset 0 0 4px #00000055,
-      inset 0 0 4px #00000044, inset 0 0 8px #00000033;
-    background: #0091ff11;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #joystick::before {
-    content: "";
-    position: absolute;
-    width: var(--cn);
-    height: var(--cn);
-    background: #00000018;
-    box-sizing: border-box;
-    border: 2px double #ffffff1f;
-    border-radius: 50%;
-  }
-  #thum {
-    position: absolute;
-    display: flex;
-    z-index: 100;
-    width: var(--cn);
-    height: var(--cn);
-    border: 1px solid #ffffff;
-    background: #00000060;
-    border-radius: 50%;
-    transition: 0.1s;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+
   }
