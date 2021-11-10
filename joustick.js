@@ -42,19 +42,22 @@ const touchEnd = (e) => {
 const Start = (e) => {
   centerTouch = true;
 };
+let moveDelay = 0;
 const center = (e) => {
   cen.style.transition = "none";
-  if (THUMX * -5 < nx && THUMX * 5 > nx && THUMY * -5 < ny && THUMY * 5 > ny) {
-    cen.style.left = THUMX + nx + "px";
-    cen.style.top = THUMY + ny + "px";
+  if (moveDelay >= 3) {
+      cen.style.left = THUMX + nx + "px";
+      cen.style.top = THUMY + ny + "px";
+      moveDelay = 0;
+  }
+  moveDelay ++;
 
     let diffX = nx - (THUMX - THUMW / 2);
-    let diffY = ny - (THUMY - THUMX / 2);
+    let diffY = ny - (THUMY - THUMX / 2); 
     let xangle = Math.atan2(diffY, diffX);
     let x = JSX + THUMW * Math.cos(angle);
     let y = JSY + THUMH * Math.sin(angle);
     angle = -(xangle + toDegree(90));
-  }
 };
 const End = (e) => {
   centerTouch = false;

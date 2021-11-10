@@ -145,4 +145,5 @@ span {
     border: 1px solid #ffffff;
     background: #00000060;
     border-radius: 50%;
+    transition: 0.1s;
   }
