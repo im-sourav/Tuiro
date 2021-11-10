@@ -120,7 +120,7 @@ span {
     border: 2px double #00000077;
     box-shadow: inset 0 0 2px #00000066, inset 0 0 4px #00000055,
       inset 0 0 4px #00000044, inset 0 0 8px #00000033;
-    background: #2222221c;
+    background: #0091ff11;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -143,8 +143,6 @@ span {
     width: var(--cn);
     height: var(--cn);
     border: 1px solid #ffffff;
-    box-shadow: inset 0 0 2px #00000066, inset 0 0 4px #00000055,
-      inset 0 0 4px #00000044, inset 0 0 8px #00000033, 0 0 4px #00000071;
     background: #00000060;
     border-radius: 50%;
   }

@@ -50,11 +50,9 @@ const center = (e) => {
 
     let diffX = nx - (THUMX - THUMW / 2);
     let diffY = ny - (THUMY - THUMX / 2);
-    // console.log(diffX);
     let xangle = Math.atan2(diffY, diffX);
     let x = JSX + THUMW * Math.cos(angle);
     let y = JSY + THUMH * Math.sin(angle);
-    // console.log(xangle);
     angle = -(xangle + toDegree(90));
   }
 };
