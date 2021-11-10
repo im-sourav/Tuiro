@@ -14,7 +14,7 @@ function getFullScreen() {
 topLayer.addEventListener("click", () => {
   fullScreenPag();
   topLayer.style.display = "none";
-  setTimeout(enter, 100);
+  setTimeout(enter, 500);
 });
 
 function fullScreenPag() {
@@ -168,11 +168,11 @@ function enter() {
         const angle = Math.atan2(cvs.width / 2 - x, cvs.height / 2 - y);
         const velocity = {
           x: Math.sin(angle),
-          y: Math.cos(angle),
+          y: Math.cos(angle), 
         };
         enemies.push(new Enemy(x, y, radius, color, velocity));
         spwnEnemies();
-      }, 1000);
+      }, 1200);
     }
   }
 
@@ -289,12 +289,12 @@ function enter() {
 
   // whice pointe click how to work.....
   addEventListener("click", (event) => {
-    //   const angle = Math.atan2(event.clientX - x, event.clientY - y);
-    //   const velocity = {
-    //     x: Math.sin(angle) * 5,
-    //     y: Math.cos(angle) * 5,
-    //   };
-    //   projectiles.push(new Projectile(x, y, 5, "white", velocity));
+      const angle = Math.atan2(event.clientX - x, event.clientY - y);
+      const velocity = {
+        x: Math.sin(angle) * 5,
+        y: Math.cos(angle) * 5,
+      };
+      projectiles.push(new Projectile(x, y, 5, "white", velocity));
   });
 
   // start button click then how to work ......
@@ -331,7 +331,12 @@ function enter() {
 
   // for joystick
   jyt.addEventListener("touchstart", (e) => {
+    let x = e.touches[0].clientX - sjx;
+    let y = e.touches[0].clientY - sjy;
+
     fire = true;
+    let xangle = Math.atan2(y, x);
+    angle = -(xangle + toDegree(90));
   });
 
   jyt.addEventListener("touchmove", (e) => {
