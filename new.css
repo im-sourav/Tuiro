@@ -21,6 +21,9 @@ body{
     font-weight: 100;
     font-size: 1.1rem;
 }
+#score span:first-child{
+    color: #ff9000;
+}
 
 span {
     padding-left: 5px;
