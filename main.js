@@ -1,4 +1,5 @@
 const cvs = document.querySelector("canvas");
+const jyt = document.getElementById("joystick");
 const scorE = document.getElementById("mscore");
 const smlScore = document.getElementById("score");
 const bigScore = document.getElementById("bigScore");
@@ -21,6 +22,11 @@ var LScore = 0;
 let projectiles = [];
 let enemies = [];
 let particles = [];
+let angle = 0;
+let bulletDelay = 10; 
+let fire = false;
+
+bestScore.innerHTML = localStorage.getItem("sbgame") == null ? 0 : localStorage.getItem("sbgame");
 
 //all draw function ............
 class Player {
@@ -144,10 +150,22 @@ function spwnEnemies() {
   }
 }
 
+let max = 0;
 function animate() {
   if (!gameOver) {
     setTimeout(animate, 1000 / FPS);
   }
+  //    --------------fire ------------------
+  if (fire && max >= bulletDelay) {
+      const velocity = {
+        x: Math.sin(angle) * 5, 
+        y: Math.cos(angle) * 5,
+      };
+        projectiles.push(new Projectile(x, y, 5, "white", velocity));
+        max = 0;
+  }
+      max++;
+
   ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
   ctx.fillRect(0, 0, x * 2, y * 2);
   player.draw();
@@ -182,11 +200,12 @@ function animate() {
       gameOver = true;
       bigScore.style.display = "flex";
       smlScore.style.display = "none";
+      jyt.style.display = "none";
       if (localStorage.getItem("sbgame") < Score) {
         localStorage.setItem("sbgame", Score);
-    }
-    LScore = localStorage.getItem("sbgame");
-    bestScore.innerHTML = LScore;
+      }
+      LScore = localStorage.getItem("sbgame");
+      bestScore.innerHTML = LScore;
       showScore.innerText = Score;
     }
     projectiles.forEach((projectile, projectilesIndex) => {
@@ -216,15 +235,21 @@ function animate() {
         if (enemy.radius - 8 > 10) {
           enemy.radius -= 10;
           Score += 10;
-          FPS += 0.1;
+          if (FPS >= 100) {
+              FPS += 0.1;
+          }
+          bulletDelay -=  0.02;
           scorE.innerHTML = Score;
           setTimeout(() => {
             projectiles.splice(projectilesIndex, 1);
           }, 0);
         } else {
           setTimeout(() => {
-            Score += 15;
-            FPS += 0.1;
+            Score += 15; 
+            if (FPS >= 100) {
+                FPS += 0.15;
+            }
+            bulletDelay -=  0.03;
             radiusIncrige += 0.1;
             scorE.innerHTML = Score;
             enemies.splice(enemiesIndex, 1);
@@ -238,12 +263,12 @@ function animate() {
 
 // whice pointe click how to work.....
 addEventListener("click", (event) => {
-  const angle = Math.atan2(event.clientX - x, event.clientY - y);
-  const velocity = {
-    x: Math.sin(angle) * 5,
-    y: Math.cos(angle) * 5,
-  };
-  projectiles.push(new Projectile(x, y, 5, "white", velocity));
+//   const angle = Math.atan2(event.clientX - x, event.clientY - y);
+//   const velocity = {
+//     x: Math.sin(angle) * 5,
+//     y: Math.cos(angle) * 5,
+//   };
+  //   projectiles.push(new Projectile(x, y, 5, "white", velocity));
 });
 
 // start button click then how to work ......
@@ -253,6 +278,8 @@ startGame.addEventListener("click", () => {
   spwnEnemies();
   animate();
   FPS = 60;
+  bulletDelay = 10;
   bigScore.style.display = "none";
   smlScore.style.display = "flex";
+  jyt.style.display = "flex";
 });
