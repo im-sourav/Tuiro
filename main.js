@@ -4,6 +4,7 @@ const smlScore = document.getElementById('score');
 const bigScore = document.getElementById('bigScore');
 const showScore = document.getElementById('showScore');
 const startGame = document.getElementById('startGame');
+const bestScore = document.getElementById('bestScore');
 const ctx = cvs.getContext('2d');
 cvs.width = window.innerWidth;
 cvs.height = window.innerHeight;
@@ -11,10 +12,11 @@ cvs.height = window.innerHeight;
 // varibels ......
 const x = cvs.width / 2;
 const y = cvs.height / 2;
-const friction = 0.99;
+const friction = 1;
 var radiusIncrige = 0;
 let animateID;
 var Score = 0;
+var LScore = 0;
 let projectiles = [];
 let enemies = [];
 let particles = [];
@@ -173,6 +175,11 @@ function animate() {
             cancelAnimationFrame(animateID);
             bigScore.style.display = "flex";
             smlScore.style.display = "none";
+            if (LScore < Score) {
+                localStorage.setItem("sbgame", Score);
+                LScore = localStorage.getItem("sbgame");
+                bestScore.innerHTML = LScore;
+            }
             showScore.innerText = Score;
         }
         projectiles.forEach((projectile, projectilesIndex) => {
@@ -227,4 +234,6 @@ startGame.addEventListener('click', () => {
     spwnEnemies();
     bigScore.style.display = "none";
     smlScore.style.display = "flex";
+    
 })
+

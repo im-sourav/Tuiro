@@ -96,5 +96,6 @@ span {
 }
 
 .p1:hover {
-
+    box-shadow: none;
+    background: #2aff5f;
 }
