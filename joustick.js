@@ -21,12 +21,12 @@ const touchStart = (e) => {
 };
 const joystick = (e) => {
     ctx.beginPath();
-    ctx.arc(sjx, sjy, 5, 0, Math.PI * 2, false);
-    ctx.fillStyle = "#ff000033"; 
+    ctx.arc(sjx, sjy, 10, 0, Math.PI * 2, false);
+    ctx.fillStyle = "#ff000088"; 
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(sjx, sjy, 50, 0, Math.PI * 2, false);
-    ctx.fillStyle = "#ff000003";
+    ctx.arc(sjx, sjy, 100, 0, Math.PI * 2, false);
+    ctx.fillStyle = "#ff000011";
     ctx.fill();
     jx = e.touches[0].clientX;
     jy = e.touches[0].clientY;
