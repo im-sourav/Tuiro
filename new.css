@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     text-align: center;
-    background: black;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+body{
+    background: #000000;
 }
 
 #score {
@@ -22,47 +26,75 @@ span {
 
 #bigScore {
     position: fixed;
-    top: 32%;
-    left: 15%;
     display: flex;
-    width: 70%;
-    height: 30%;
-    color: #000;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    left: calc(50% - 150px);
+    top: calc(50% - 100px);
     border-radius: 5px;
-    background-color: white;
     justify-content: center;
     align-items: center;
+    padding: 5px;
+    border: 1px solid #494949;
+    box-shadow: 1px 1px 1px #000000, inset 0 1px 1px #ffffff;
+    background:  #2d1e8a;
 }
-
-ul {
-    background: white;
+#bigScore::before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 6px);
+    height: 50%;
+    margin: 3px;
+    top: 0;
+    left: 0;
+    border-radius: 5px 5px 20px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    z-index: 1;
 }
 
 #showScore {
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 10px;
-    background: white;
-    font-family: 'Times New Roman', Times, serif;
+    color: #ffffff;
+}
+.score{
+    display: flex;
+    position: relative;
+    margin: 5px 0;
+}
+.p {
+    font-size: 1.5rem;
+    color: #ff9000;
+}
+.score p:last-child{
+    margin-left: 10px;
+}
+.last {
+    width: 100%;
+    margin-left: 10px;
+}
+.last p{
+    font-size: 1rem;
+    color: #ff00aa;
+    font-weight: 900;
+}
+.last p:last-child{
+    color: #ffffff;
 }
 
-.p {
-    padding-bottom: 4px;
-    font-size: 20px;
-    background: white;
-    font-family: 'Courier New', Courier, monospace;
-}
 
 .p1 {
-    font-size: 15px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: blue;
-    padding: 4px 90px;
-    color: rgb(255, 0, 170);
-    border: .2px black solid;
-    box-shadow: inset 8px 4px 5px rgb(5, 101, 255);
-    border-radius: 30px;
+    margin: 8px;
+    font-size: 1.5rem;
+    background: #00ff40;
+    border-radius: 5px;
+    border: 2px solid #008722;
+    font-weight: 900;
+    padding: 5px 20px;
+    box-shadow: 1px 1px 3px #000000;
 }
 
 .p1:hover {
-    box-shadow: inset 10px 10px 40px rgb(5, 255, 234);
+
 }
