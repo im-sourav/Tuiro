@@ -33,7 +33,7 @@ function fullScreenPag() {
     document.exitFullscreen();
   } else {
     document.documentElement.requestFullscreen().catch(
-      (() => {
+      setTimeout(() => {
         class Player {
           constructor(x, y, radius, color) {
             this.x = x;
@@ -375,7 +375,7 @@ function fullScreenPag() {
             });
           });
         }
-      })()
+      }, 500)
     );
   }
 }
