@@ -125,10 +125,10 @@ function fullScreenPag() {
             this.velocity.y *= friction;
             this.x = this.x + this.velocity.x;
             this.y = this.y + this.velocity.y;
-            this.alpha -= 0.01;
+            this.alpha -= 0.05;
           }
         }
-        const friction = 1;
+        const friction = 1.05;
         var radiusIncrige = 0;
         let gameOver = false;
         var Score = 0;
@@ -146,9 +146,9 @@ function fullScreenPag() {
         y = cvs.height / 2;
 
         bestScore.innerHTML =
-          localStorage.getItem("sbgame") == null
+          localStorage.getItem("sbgames") == null
             ? 0
-            : localStorage.getItem("sbgame");
+            : localStorage.getItem("sbgames");
 
         // send value draw for player ....
         let player = new Player(x, y, 10, "#ffffff");
@@ -211,11 +211,11 @@ function fullScreenPag() {
             y: Math.cos(angle) * 5,
           };
           projectiles.push(new Projectile(x, y, 5, "#ffffff", velocity));
+          Sounds.fire();
         });
 
         // start button click then how to work ......
         startGame.addEventListener("click", () => {
-          console.log("work");
           gameOver = false;
           reset();
           spwnEnemies();
@@ -280,6 +280,7 @@ function fullScreenPag() {
             };
             projectiles.push(new Projectile(x, y, 5, "#ffffff", velocity));
             max = 0;
+            Sounds.fire();
           }
           max++;
           ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
@@ -315,13 +316,14 @@ function fullScreenPag() {
             const distence = Math.hypot(player.x - enemy.x, player.y - enemy.y);
             if (distence - player.radius - enemy.radius < 1) {
               gameOver = true;
+              Sounds.dead();
               bigScore.style.display = "flex";
               smlScore.style.display = "none";
               jyt.style.display = "none";
-              if (localStorage.getItem("sbgame") < Score) {
-                localStorage.setItem("sbgame", Score);
+              if (localStorage.getItem("sbgames") < Score) {
+                localStorage.setItem("sbgames", Score);
               }
-              LScore = localStorage.getItem("sbgame");
+              LScore = localStorage.getItem("sbgames");
               bestScore.innerHTML = LScore;
               showScore.innerText = Score;
             }
@@ -339,7 +341,7 @@ function fullScreenPag() {
                     new Particle(
                       projectile.x,
                       projectile.y,
-                      Math.random() * 2,
+                      Math.random() * 1.5,
                       enemy.color,
                       {
                         x: (Math.random() - 0.5) * (Math.random() * 6),
@@ -351,6 +353,7 @@ function fullScreenPag() {
                 // big enemy distroy to smol...
                 if (enemy.radius - 8 > 10) {
                   enemy.radius -= 10;
+                  Sounds.blast2();
                   Score += 10;
                   if (FPS >= 100) {
                     FPS += 0.01;
@@ -361,6 +364,7 @@ function fullScreenPag() {
                     projectiles.splice(projectilesIndex, 1);
                   }, 0);
                 } else {
+                  Sounds.blast1();
                   Score += 15;
                   if (FPS >= 100) {
                     FPS += 0.015;
@@ -379,3 +383,37 @@ function fullScreenPag() {
     );
   }
 }
+
+
+var favicon = document.getElementById( 'favicon' ),
+		favc = document.createElement( 'canvas'),
+		favctx = favc.getContext( '2d' ),
+		faviconGrid = [
+			[ 1, 1, 1, 1, 1,  ,  , 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+			[ 1,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 1 ],
+			[ 1,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 1 ],
+			[ 1,  ,  , 1, 1, 1, 1,  ,  , 1, 1, 1, 1,  ,  , 0 ],
+			[ 1,  , 1, 1, 1, 1, 1,  ,  , 1, 1, 1, 1, 1,  , 0 ],
+			[ 1,  , 1, 1,  ,  , 1,  ,  , 1, 1,  , 1, 1,  , 1 ],
+			[ 1,  , 1, 1,  ,  ,  ,  ,  , 1, 1,  , 1, 1,  , 1 ],
+			[ 1,  , 1, 1, 1, 1,  ,  ,  , 1, 1, 1, 1,  ,  , 1 ],
+			[ 1,  ,  , 1, 1, 1, 1,  ,  , 1, 1, 1, 1,  ,  , 1 ],
+			[ 1,  ,  ,  ,  , 1, 1,  ,  , 1, 1,  , 1, 1,  , 1 ],
+			[ 1,  , 1,  ,  , 1, 1,  ,  , 1, 1,  , 1, 1,  , 1 ],
+			[  ,  , 1, 1, 1, 1, 1,  ,  , 1, 1, 1, 1, 1,  , 1 ],
+			[  ,  , 1, 1, 1, 1,  ,  ,  , 1, 1, 1, 1,  ,  , 1 ],
+			[ 1,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 1 ],
+			[ 1,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 1 ],
+			[ 1, 1, 1, 1, 1, 1, 1, 1, 1,  ,  , 1, 1, 1, 1, 1 ]
+		];
+	favc.width = favc.height = 16;
+	favctx.beginPath();
+	for( let y = 0; y < 16; y++ ) {
+		for( let x = 0; x < 16; x++ ) {
+			if( faviconGrid[ y ][ x ] === 1 ) {
+				favctx.rect( x, y, 1, 1 );
+			}
+		}
+	}
+	favctx.fill();
+	favicon.href = favc.toDataURL();
